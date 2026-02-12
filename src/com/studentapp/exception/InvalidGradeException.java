@@ -1,31 +1,33 @@
 package com.studentapp.exception;
 
+import java.util.UUID;
+
 public class InvalidGradeException extends RuntimeException{
-    private final int StudentId;
-    private final String Name;
-    private final String Grade;
+    private final UUID studentId;
+    private final String name;
+    private final double grade;
 
 
-    public InvalidGradeException(String message,int studentId, String name, String grade) {
+    public InvalidGradeException(String message,UUID StudentId, String Name, double Grade) {
         super(message);
-        this.StudentId = studentId;
-        this.Name = name;
-        this.Grade = grade;
-    };
+        this.studentId = StudentId;
+        this.name = Name;
+        this.grade = Grade;
+    }
 
-    public InvalidGradeException(int studentId, String name, String grade){
+    public InvalidGradeException(UUID studentId, String name, double grade){
         this("Invalid Grade "+ grade + "was given to "+ name  + "with Student ID:" + studentId, studentId,name,grade);
     }
 
-    public int getStudentId() {
-        return StudentId;
+    public UUID getStudentId() {
+        return studentId;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public String getGrade() {
-        return Grade;
+    public double getGrade() {
+        return grade;
     }
 }

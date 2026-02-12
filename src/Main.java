@@ -1,38 +1,30 @@
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import com.studentapp.model.Person;
+import com.studentapp.model.Professor;
+import com.studentapp.model.Student;
+import com.studentapp.util.AppLogger;
 
-public class Main extends Application {
+import java.util.logging.Logger;
 
-    @Override
-    public void start(Stage primaryStage) {
-        // Create UI components
-        Label label = new Label("Hello JavaFX!");
-        Button button = new Button("Click Me!");
-
-        // Add event handler
-        button.setOnAction(e -> {
-            label.setText("Button Clicked! JavaFX is working! 🎉");
-        });
-
-        // Layout
-        VBox root = new VBox(10);
-        root.getChildren().addAll(label, button);
-        root.setStyle("-fx-padding: 20;");
-
-        // Scene
-        Scene scene = new Scene(root, 400, 200);
-
-        // Stage
-        primaryStage.setTitle("JavaFX Test");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+public class Main {
 
     public static void main(String[] args) {
-        launch(args);
+
+        Logger logger = AppLogger.getInstance();
+
+        // Create Student
+        Student student = new Student("Alice", 20, "alice@university.edu", 2, "Computer Science");
+        logger.info("Created: " + student);
+        logger.info("Letter Grade: " + student.getLetterGrade());
+        logger.info("Passing: " + student.isPassing());
+
+        // Create Professor
+        Professor prof = new Professor("Dr. Smith", 45, "smith@university.edu", 5, "Mathematics");
+        logger.info("Created: " + prof);
+
+        // Polymorphism
+        Person person = student;
+        logger.info("Role: " + person.getRole());
     }
-}
+
+
+    }
